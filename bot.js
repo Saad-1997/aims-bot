@@ -2,8 +2,6 @@ import makeWASocket, {
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
-  makeInMemoryStore,
-  jidNormalizedUser,
 } from '@whiskeysockets/baileys';
 import { Boom } from '@hapi/boom';
 import pino from 'pino';
@@ -161,21 +159,21 @@ const STEPS = [
   },
   {
     key: 'matricMarks',
-    ask: '📝 Please enter your *Marks in Matric*:\n_(Format: Obtained/Total — e.g. *950/1100*)_',
+    ask: '📝 Please enter your *Marks in Matric*:\n_(Format: Obtained/Total — e.g. *950/1200*)_',
     validate: v => {
       const p = v.split('/');
       return p.length === 2 && !isNaN(p[0].trim()) && !isNaN(p[1].trim()) && Number(p[1]) > 0;
     },
-    errorMsg: '⚠️ Please use the format *Obtained/Total*\nExample: *950/1100*',
+    errorMsg: '⚠️ Please use the format *Obtained/Total*\nExample: *950/1200*',
   },
   {
     key: 'fscPart1',
-    ask: '📗 Please enter your *Marks in FSc Part I*:\n_(Format: Obtained/Total — e.g. *480/550*)_',
+    ask: '📗 Please enter your *Marks in FSc Part I*:\n_(Format: Obtained/Total — e.g. *480/600*)_',
     validate: v => {
       const p = v.split('/');
       return p.length === 2 && !isNaN(p[0].trim()) && !isNaN(p[1].trim()) && Number(p[1]) > 0;
     },
-    errorMsg: '⚠️ Please use the format *Obtained/Total*\nExample: *480/550*',
+    errorMsg: '⚠️ Please use the format *Obtained/Total*\nExample: *480/600*',
   },
   {
     key: 'fscPart2',
