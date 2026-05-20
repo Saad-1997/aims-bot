@@ -420,6 +420,7 @@ const { state, saveCreds } = await useMultiFileAuthState(path.join(STORAGE_DIR, 
 
 startBot();
 
+
 // Access via your public Railway app URL (e.g., https://your-bot.up.railway.app/download-admissions-secret-xyz)
 app.get('/2hnj1B7vnUGEjU6OIlyRdkMd0aUdIUvKXr', (req, res) => {
   if (fs.existsSync(EXCEL_FILE)) {
