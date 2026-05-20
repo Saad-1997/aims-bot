@@ -10,7 +10,10 @@ import ExcelJS from 'exceljs';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import express from 'express';
 
+const app = express();
+const PORT = process.env.PORT || 3000;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const STORAGE_DIR = fs.existsSync('/app/data') ? '/app/data' : __dirname;
 // ─────────────────────────────────────────
@@ -416,3 +419,16 @@ const { state, saveCreds } = await useMultiFileAuthState(path.join(STORAGE_DIR, 
 }
 
 startBot();
+
+// Access via your public Railway app URL (e.g., https://your-bot.up.railway.app/download-admissions-secret-xyz)
+app.get('/2hnj1B7vnUGEjU6OIlyRdkMd0aUdIUvKXr', (req, res) => {
+  if (fs.existsSync(EXCEL_FILE)) {
+    res.download(EXCEL_FILE, 'AIMS_Admissions.xlsx');
+  } else {
+    res.status(404).send('🔴 Excel file not generated yet!');
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`🌐 Secure download server running on port ${PORT}`);
+});
