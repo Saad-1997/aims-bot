@@ -12,7 +12,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
+const STORAGE_DIR = fs.existsSync('/app/data') ? '/app/data' : __dirname;
 // ─────────────────────────────────────────
 //  ROLL NUMBER COUNTERS
 // ─────────────────────────────────────────
@@ -25,7 +25,7 @@ const DEFAULT_COUNTERS = {
   'ICS - Girls':             31101,
 };
 
-const COUNTER_FILE = path.join(__dirname, 'roll_counters.json');
+const COUNTER_FILE = path.join(STORAGE_DIR, 'roll_counters.json');
 const rollCounters = fs.existsSync(COUNTER_FILE)
   ? JSON.parse(fs.readFileSync(COUNTER_FILE, 'utf8'))
   : { ...DEFAULT_COUNTERS };
@@ -61,7 +61,7 @@ function calcMerit(fscObt, fscTotal, matricObt, matricTotal, mdcatObt, mdcatTota
 // ─────────────────────────────────────────
 //  EXCEL SAVE — exact Google Forms columns
 // ─────────────────────────────────────────
-const EXCEL_FILE = path.join(__dirname, 'AIMS_Admissions.xlsx');
+const EXCEL_FILE = path.join(STORAGE_DIR, 'AIMS_Admissions.xlsx');
 
 async function saveToExcel(data) {
   const workbook = new ExcelJS.Workbook();
@@ -339,7 +339,7 @@ async function handleMessage(sock, jid, text) {
 //  START BOT
 // ─────────────────────────────────────────
 async function startBot() {
-  const { state, saveCreds } = await useMultiFileAuthState('auth_info');
+const { state, saveCreds } = await useMultiFileAuthState(path.join(STORAGE_DIR, 'auth_info'));
   const { version }          = await fetchLatestBaileysVersion();
 
   const sock = makeWASocket({
