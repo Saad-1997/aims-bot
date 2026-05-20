@@ -1,0 +1,16 @@
+{
+  "name": "aims-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "AIMS Academy D.I.Khan Admission Bot (Baileys - Termux)",
+  "main": "bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "pino": "^9.4.0",
+    "exceljs": "^4.4.0",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
