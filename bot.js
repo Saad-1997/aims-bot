@@ -20,7 +20,7 @@ const STORAGE_DIR = fs.existsSync('/app/data') ? '/app/data' : __dirname;
 //  ROLL NUMBER COUNTERS
 // ─────────────────────────────────────────
 const DEFAULT_COUNTERS = {
-  'Pre Medical - Boys':      26118,
+  'Pre Medical - Boys':      26119,
   'Pre Medical - Girls':     27115,
   'Pre Engineering - Boys':  28101,
   'Pre Engineering - Girls': 29101,
